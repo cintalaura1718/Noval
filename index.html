@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aku Cinta Laura</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            margin-top: 20vh;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .animated-text {
+            display: inline-block;
+            opacity: 0;
+            transform: scale(2);
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(2);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px red, 0 0 10px yellow, 0 0 20px magenta; }
+            50% { text-shadow: 0 0 10px yellow, 0 0 20px magenta, 0 0 30px cyan; }
+            100% { text-shadow: 0 0 5px magenta, 0 0 10px cyan, 0 0 20px red; }
+        }
+
+        .glow {
+            animation: glow 1.5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span id="text"></span>
+    </div>
+
+    <script>
+        const text = "Aku Cinta Laura";
+        const textContainer = document.getElementById("text");
+
+        text.split("").forEach((char, index) => {
+            let span = document.createElement("span");
+            span.textContent = char;
+            span.classList.add("animated-text");
+            span.style.animationDelay = `${index * 0.2}s`;
+            textContainer.appendChild(span);
+        });
+
+        setTimeout(() => {
+            textContainer.classList.add("glow");
+        }, text.length * 200);
+    </script>
+
+</body>
+</html>
